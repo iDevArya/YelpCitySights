@@ -10,9 +10,9 @@ import Foundation
 struct DataService {
     
     
-    func apirequest() async {
+    func apirequest() async -> [Business] {
         guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String else {
-            return
+            return [Business]()
         }
         // Create an URL
         if let url = URL(string: "https://api.yelp.com/v3/businesses/search?latitude=37.785834&longitude=-122.406417&categories=restaurants&limit=10") {
@@ -24,14 +24,17 @@ struct DataService {
             // Create a URLSession
             do {
                 let (data, response) = try await URLSession.shared.data(for: request)
-                print("API Request Successfull")
-                print(data)
-                print(response)
+                // Parse the JSON
+                let decoder = JSONDecoder()
+                let result = try decoder.decode(BusinessSearch.self, from: data)
+                return result.businesses
+           
             }
             catch {
                 print("Couldn't create an URLSession: \(error)")
             }
             
         }
+        return [Business]()
     }
 }

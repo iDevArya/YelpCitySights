@@ -18,7 +18,7 @@ struct ContentView: View {
         }
         .padding()
         .task {
-            await dataService.apirequest()
+            let businesses = await dataService.apirequest()
         }
     }
 }
