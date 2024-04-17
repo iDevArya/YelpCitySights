@@ -14,7 +14,7 @@ struct BusinessSearch: Decodable {
 }
 
 // MARK: - Business
-struct Business: Decodable {
+struct Business: Decodable, Identifiable {
     var alias: String?
     var categories: [Category]
     var coordinates: Coordinate?
