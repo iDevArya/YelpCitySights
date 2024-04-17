@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    var dataService = DataService()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,9 +17,9 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
-        .onAppear(perform: {
-            print(Bundle.main.infoDictionary?["API_KEY"] as? String)
-        })
+        .task {
+            await dataService.apirequest()
+        }
     }
 }
 
