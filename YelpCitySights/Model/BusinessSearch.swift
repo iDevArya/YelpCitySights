@@ -18,16 +18,27 @@ struct Business: Decodable, Identifiable {
     var alias: String?
     var categories: [Category]
     var coordinates: Coordinate?
-    var display_phone: String?
+    var displayPhone: String?
     var distance: Double?
     var id: String?
-    var image_url: String?
-    var is_closed: Bool?
+    var imageURL: String?
+    var isClosed: Bool?
     var location: Location?
     var name, phone, price: String?
     var rating: Double?
-    var review_count: Int?
+    var reviewCount: Int?
     var url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case alias, categories, coordinates
+        case displayPhone = "display_phone"
+        case distance, id
+        case imageURL = "image_url"
+        case isClosed = "is_closed"
+        case location, name, phone, price, rating
+        case reviewCount = "review_count"
+        case url
+    }
 }
 
 // MARK: - Category
@@ -47,6 +58,13 @@ struct Location: Decodable {
     var country: String?
     var displayAddress: [String]?
     var state, zipCode: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case address1, address2, address3, city, country
+        case displayAddress = "display_address"
+        case state
+        case zipCode = "zip_code"
+    }
 }
 
 // MARK: - Region
