@@ -28,16 +28,36 @@ struct ContentView: View {
                 }
             }
             
-            List(businesses) { b in
-                Text(b.name ?? "")
+            List {
+                ForEach(businesses) { b in
+                    VStack(spacing: 20){
+                        HStack(spacing: 0) {
+                            Image("list-placeholder-image")
+                                .padding(.trailing, 16)
+                            VStack(alignment: .leading) {
+                                Text(b.name ?? "Restaurant")
+                                    .font(Font.system(size: 15))
+                                    .bold()
+                                Text("\(TextHelper.distanceInMiles(meters: b.distance ?? 0)) miles away")
+                                    .font(Font.system(size: 16))
+                                    .foregroundStyle(Color(red: 67/255, green: 71/255, blue: 76/255))
+                            }
+                            Spacer()
+                            Image("regular_\(b.rating ?? 0)")
+                        }
+                        Divider()
+                    }
+                }
+                .listRowSeparator(.hidden)
             }
-            .padding()
-            .task {
-                businesses = await dataService.apirequest()
-            }
+            .listStyle(.plain)
+        }
+        .task {
+            businesses = await dataService.apirequest()
         }
     }
 }
+
 
 #Preview {
     ContentView()

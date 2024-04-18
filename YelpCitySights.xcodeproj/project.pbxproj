@@ -13,6 +13,7 @@
 		02590D232BCF6C980087C424 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02590D222BCF6C980087C424 /* Preview Assets.xcassets */; };
 		02590D2E2BCF784B0087C424 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02590D2D2BCF784B0087C424 /* DataService.swift */; };
 		02590D302BCF81B30087C424 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02590D2F2BCF81B30087C424 /* BusinessSearch.swift */; };
+		02590D342BD1A6BD0087C424 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02590D332BD1A6BD0087C424 /* TextHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		02590D2A2BCF72630087C424 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		02590D2D2BCF784B0087C424 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		02590D2F2BCF81B30087C424 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
+		02590D332BD1A6BD0087C424 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				02590D1D2BCF6C960087C424 /* ContentView.swift */,
 				02590D2D2BCF784B0087C424 /* DataService.swift */,
 				02590D312BCF81B60087C424 /* Model */,
+				02590D322BD1A6A10087C424 /* Helper */,
 				02590D292BCF71590087C424 /* Config.xcconfig */,
 				02590D1F2BCF6C980087C424 /* Assets.xcassets */,
 				02590D212BCF6C980087C424 /* Preview Content */,
@@ -83,6 +86,14 @@
 				02590D2F2BCF81B30087C424 /* BusinessSearch.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		02590D322BD1A6A10087C424 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				02590D332BD1A6BD0087C424 /* TextHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +168,7 @@
 			files = (
 				02590D2E2BCF784B0087C424 /* DataService.swift in Sources */,
 				02590D302BCF81B30087C424 /* BusinessSearch.swift in Sources */,
+				02590D342BD1A6BD0087C424 /* TextHelper.swift in Sources */,
 				02590D1E2BCF6C960087C424 /* ContentView.swift in Sources */,
 				02590D1C2BCF6C960087C424 /* YelpCitySightsApp.swift in Sources */,
 			);
