@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var query: String = ""
     @State var businesses = [Business]()
+    @State var selectedBusiness: Business?
     var dataService = DataService()
     var body: some View {
         VStack {
@@ -30,15 +31,15 @@ struct ContentView: View {
             
             List {
                 ForEach(businesses) { b in
-                    VStack(spacing: 20){
-                        HStack(spacing: 0) {
+                    VStack (spacing: 20) {
+                        HStack (spacing: 0) {
                             Image("list-placeholder-image")
                                 .padding(.trailing, 16)
-                            VStack(alignment: .leading) {
+                            VStack (alignment: .leading) {
                                 Text(b.name ?? "Restaurant")
                                     .font(Font.system(size: 15))
                                     .bold()
-                                Text("\(TextHelper.distanceInMiles(meters: b.distance ?? 0)) miles away")
+                                Text(TextHelper.distanceInMiles(meters: b.distance ?? 0))
                                     .font(Font.system(size: 16))
                                     .foregroundStyle(Color(red: 67/255, green: 71/255, blue: 76/255))
                             }
@@ -47,13 +48,18 @@ struct ContentView: View {
                         }
                         Divider()
                     }
-                }
+                    .onTapGesture {
+                        selectedBusiness = b
+                    }                }
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
         }
         .task {
             businesses = await dataService.apirequest()
+        }
+        .sheet(item: $selectedBusiness) { item in
+            BusinessDetialView(business: item)
         }
     }
 }

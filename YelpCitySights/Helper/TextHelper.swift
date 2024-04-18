@@ -11,6 +11,6 @@ struct TextHelper {
     
     static func distanceInMiles(meters: Double) -> String {
         let miles = meters * 0.000621371
-        return String(format: "%.1f", miles)
+        return String(format: "%.1f miles away", miles)
     }
 }
