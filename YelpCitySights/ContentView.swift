@@ -44,7 +44,7 @@ struct ContentView: View {
                                     .foregroundStyle(Color(red: 67/255, green: 71/255, blue: 76/255))
                             }
                             Spacer()
-                            Image("regular_\(b.rating ?? 0)")
+                            Image("regular_\(ceil(b.rating ?? 0))")
                         }
                         Divider()
                     }
