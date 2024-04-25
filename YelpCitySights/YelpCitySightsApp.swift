@@ -12,7 +12,7 @@ struct YelpCitySightsApp: App {
     @State var viewModel = BusinessModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environment(viewModel)
         }
     }
