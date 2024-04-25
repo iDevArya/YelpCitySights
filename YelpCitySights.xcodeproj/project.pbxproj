@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		025816EB2BDA00BF006281AA /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025816EA2BDA00BF006281AA /* BusinessModel.swift */; };
 		02590D1C2BCF6C960087C424 /* YelpCitySightsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02590D1B2BCF6C960087C424 /* YelpCitySightsApp.swift */; };
 		02590D1E2BCF6C960087C424 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02590D1D2BCF6C960087C424 /* ContentView.swift */; };
 		02590D202BCF6C980087C424 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02590D1F2BCF6C980087C424 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		025816EA2BDA00BF006281AA /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
 		02590D182BCF6C960087C424 /* YelpCitySights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YelpCitySights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02590D1B2BCF6C960087C424 /* YelpCitySightsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpCitySightsApp.swift; sourceTree = "<group>"; };
 		02590D1D2BCF6C960087C424 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				02590D2F2BCF81B30087C424 /* BusinessSearch.swift */,
+				025816EA2BDA00BF006281AA /* BusinessModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02590D2E2BCF784B0087C424 /* DataService.swift in Sources */,
+				025816EB2BDA00BF006281AA /* BusinessModel.swift in Sources */,
 				02590D302BCF81B30087C424 /* BusinessSearch.swift in Sources */,
 				02590D342BD1A6BD0087C424 /* TextHelper.swift in Sources */,
 				02590D372BD1B6510087C424 /* BusinessDetialView.swift in Sources */,
