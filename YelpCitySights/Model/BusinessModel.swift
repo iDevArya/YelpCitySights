@@ -55,8 +55,9 @@ class BusinessModel: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        currentUserLocation = locations.last?.coordinate
-        if currentUserLocation != nil  {
+        
+        if currentUserLocation == nil  {
+            currentUserLocation = locations.last?.coordinate
             getBusiness()
         }
         manager.stopUpdatingLocation()

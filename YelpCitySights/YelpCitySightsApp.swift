@@ -23,6 +23,11 @@ struct YelpCitySightsApp: App {
                     OnboardingView()
                         .environment(viewModel)
                 }
+                .onAppear {
+                    if needsOnboarding == false {
+                        viewModel.getLocation()
+                    }
+                }
 
         }
     }
