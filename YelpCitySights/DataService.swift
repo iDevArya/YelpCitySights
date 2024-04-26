@@ -11,7 +11,7 @@ import CoreLocation
 struct DataService {
     
     
-    func apirequest(userLocation: CLLocationCoordinate2D?) async -> [Business] {
+    func apirequest(userLocation: CLLocationCoordinate2D?, query: String?, options: String?, category: String?) async -> [Business] {
         guard let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String else {
             return [Business]()
         }
@@ -24,11 +24,23 @@ struct DataService {
             lat = userLocation.latitude
             long = userLocation.longitude
         }
+        var endpointUrlString = "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(long)&categories=restaurants&limit=10"
         
-        
+        // Add Query to endpoint
+        if query != nil && query != "" {
+            endpointUrlString.append("&term=\(query!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)")
+        }
+        // Add options to endpoint
+        if options != nil && options != "" {
+            endpointUrlString.append("&attributes=\(options!)")
+        }
+        // Add Category to the endpoint
+        if let category = category {
+            endpointUrlString.append("&category=\(category)")
+        }
         
         // Create an URL
-        if let url = URL(string: "https://api.yelp.com/v3/businesses/search?latitude=\(lat)&longitude=\(long)&categories=restaurants&limit=10") {
+        if let url = URL(string: endpointUrlString) {
             // Create an URLRequest
             var request = URLRequest(url: url)
             request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
