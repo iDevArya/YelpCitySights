@@ -6,16 +6,61 @@
 //
 
 import Foundation
+import CoreLocation
+
 @Observable
-class BusinessModel {
+class BusinessModel: NSObject, CLLocationManagerDelegate {
     var query: String = ""
     var businesses = [Business]()
     var selectedBusiness: Business?
+    
     var dataService = DataService()
+    var locationManager = CLLocationManager()
+    var currentUserLocation: CLLocationCoordinate2D?
+    
+    override init() {
+        super.init()
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.delegate = self
+    }
     
     func getBusiness() {
         Task {
-            businesses = await dataService.apirequest()
+            businesses = await dataService.apirequest(userLocation: currentUserLocation)
         }
     }
+    
+    func getLocation() {
+        if locationManager.authorizationStatus == .authorizedWhenInUse {
+            
+            currentUserLocation = nil
+            locationManager.requestLocation()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print(error)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        // Detect if user allowed, then request location
+        
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            currentUserLocation = nil
+            manager.requestLocation()
+        }
+       
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentUserLocation = locations.last?.coordinate
+        if currentUserLocation != nil  {
+            getBusiness()
+        }
+        manager.stopUpdatingLocation()
+    }
+    
+    
 }

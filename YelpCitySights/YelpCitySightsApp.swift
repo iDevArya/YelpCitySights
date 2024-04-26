@@ -21,6 +21,7 @@ struct YelpCitySightsApp: App {
                     
                 } content: {
                     OnboardingView()
+                        .environment(viewModel)
                 }
 
         }
