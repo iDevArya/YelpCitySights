@@ -71,13 +71,17 @@ struct BusinessDetialView: View {
                     
                     HStack {
                         Image(systemName: "phone")
-                        Text("\(business?.phone ?? "")")
-                        Spacer()
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "arrow.right")
+                        if let url = URL(string: "tel:\(business?.phone ?? "")") {
+                            Link(destination: url) {
+                                Text("\(business?.phone ?? "")")
+                            }
                         }
+                        else {
+                            Text("\(business?.phone ?? "")")
+                        }
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                        
                     }
                     .padding(.vertical, 12)
                     
@@ -85,29 +89,27 @@ struct BusinessDetialView: View {
                     
                     HStack {
                         Image(systemName: "globe")
-                        Text("\(business?.url ?? "")")
-                            .lineLimit(1)
-                        Spacer()
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "arrow.right")
+                        if let url = URL(string: "\(business?.url ?? "")") {
+                            Link(destination: url) {
+                                Text("\(business?.url ?? "")")
+                                    .lineLimit(1)
+                            }
                         }
+                        else {
+                            Text("\(business?.url ?? "")")
+                                .lineLimit(1)
+                        }
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                        
                     }
                     .padding(.vertical, 12)
-
+                    
                     Divider()
                     
                     HStack {
                         Image(systemName: "bubble.left.and.bubble.right")
                         Text("\(business?.reviewCount ?? 0) reviews")
-                        Spacer()
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "arrow.right")
-                        }
-                        
                     }
                     .padding(.vertical, 12)
                 }
