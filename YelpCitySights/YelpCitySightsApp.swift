@@ -18,17 +18,15 @@ struct YelpCitySightsApp: App {
                 .fullScreenCover(isPresented: $needsOnboarding) {
                     // on Dismiss
                     needsOnboarding = false
-                    
                 } content: {
                     OnboardingView()
                         .environment(viewModel)
                 }
                 .onAppear {
-                    if needsOnboarding == false {
+                    if needsOnboarding == false && viewModel.authorizationStatus == .notDetermined {
                         viewModel.getLocation()
                     }
                 }
-
         }
     }
 }

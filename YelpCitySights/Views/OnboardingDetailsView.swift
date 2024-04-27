@@ -45,7 +45,7 @@ struct OnboardingDetailsView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 115)
-
+                
             }
             .foregroundStyle(.white)
         }
@@ -55,6 +55,6 @@ struct OnboardingDetailsView: View {
 
 #Preview {
     OnboardingDetailsView(bgColor: Color(red: 111/255, green: 154/255, blue: 189/255), headline: "Welcome to City Sights", subHeadline: "City Sights helps to find the best of the city!") {
-        // Nothing 
+        // Nothing
     }
 }

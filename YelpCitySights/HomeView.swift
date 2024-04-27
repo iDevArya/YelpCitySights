@@ -17,6 +17,7 @@ struct HomeView: View {
     @State var showOptions = false
     @State var isDealOn = false
     @State var categotySelection = "restaurants"
+    
     var body: some View {
         @Bindable var viewModel = viewModel
         VStack {
@@ -34,12 +35,10 @@ struct HomeView: View {
                         showOptions = false
                         textfieldFocused = false
                     }
-                    
                     // Perform a search
                     viewModel.getBusiness(query: query,
                                           options: getOptionsString(),
                                           category: categotySelection)
-                    
                 } label: {
                     Text("Go")
                         .padding(.horizontal)
@@ -65,12 +64,10 @@ struct HomeView: View {
                                 .tag("arts")
                         }
                     }
-                    
                 }
                 .padding(.horizontal, 40)
                 .transition(.scale)
             }
-            
             Picker("", selection: $selectedTab) {
                 Text("List")
                     .tag(0)
@@ -79,8 +76,23 @@ struct HomeView: View {
                     .tag(1)
             }
             .pickerStyle(.segmented)
+            .padding(.horizontal)
             
-            if selectedTab == 0 {
+            if viewModel.authorizationStatus == .denied {
+                Spacer()
+                Text("Please allow location services for this app to see sights near you.")
+                    .padding(.horizontal)
+                Button {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                } label: {
+                    Text("Open App Settings")
+                }
+                .buttonStyle(BorderedButtonStyle())
+                Spacer()
+            }
+            else if selectedTab == 0 {
                 ListView()
                     .onTapGesture {
                         withAnimation {
@@ -98,13 +110,7 @@ struct HomeView: View {
                         }
                     }
             }
-            
-            
-            
         }
-        .onAppear(perform: {
-            viewModel.getBusiness(query: nil, options: nil, category: nil)
-        })
         .sheet(item: $viewModel.selectedBusiness) { item in
             BusinessDetialView()
         }
@@ -118,7 +124,6 @@ struct HomeView: View {
         if isDealOn {
             optionsArray.append("deals")
         }
-        
         return optionsArray.joined(separator: ",")
     }
 }

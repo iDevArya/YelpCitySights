@@ -26,7 +26,8 @@ struct ListView: View {
                                 ProgressView()
                                     .frame(width: 50, height: 50)
                             }
-                        } else {
+                        } 
+                        else {
                             Image("list-placeholder-image")
                                 .padding(.trailing, 16)
                         }

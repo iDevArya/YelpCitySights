@@ -39,6 +39,7 @@ struct BusinessDetialView: View {
                 }
             }
             .frame(height: 164)
+            
             if let isClosed = business?.isClosed {
                 
                 ZStack (alignment: .leading){

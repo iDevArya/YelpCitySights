@@ -53,7 +53,7 @@ struct DataService {
                 let decoder = JSONDecoder()
                 let result = try decoder.decode(BusinessSearch.self, from: data)
                 return result.businesses
-           
+                
             }
             catch {
                 print("Couldn't create an URLSession: \(error)")

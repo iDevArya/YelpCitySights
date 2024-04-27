@@ -17,6 +17,7 @@ class BusinessModel: NSObject, CLLocationManagerDelegate {
     var dataService = DataService()
     var locationManager = CLLocationManager()
     var currentUserLocation: CLLocationCoordinate2D?
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined
     
     override init() {
         super.init()
@@ -47,12 +48,12 @@ class BusinessModel: NSObject, CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // Detect if user allowed, then request location
-        
+        authorizationStatus = manager.authorizationStatus
         if manager.authorizationStatus == .authorizedWhenInUse {
             currentUserLocation = nil
             manager.requestLocation()
         }
-       
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
